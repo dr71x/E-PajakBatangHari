@@ -73,7 +73,7 @@
                 @endforelse 
             </tbody>
         </table>
-        <table style="margin-top: 250px">
+        <table style="margin-bottom: 250px">
             <tr>
                 <td width="500px">
 
