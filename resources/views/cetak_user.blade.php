@@ -11,14 +11,14 @@
     <title>Laporan Pajak</title>
   </head>
   <body>
-    <div class="container">
+    <div class="container" style="margin-top: 20px">
         <table>
             <tr>
-                <td width="200px" align="right" rowspan="2">
+                <td width="100px" align="right" rowspan="2">
                     <img src="{{ asset('baru') }}/images/batanghari.png" alt="" width="50px">
                 </td>
                 <td width="300px" align="center">
-                    <h3>Laporan Pajak</h3>
+                    <h3>Struck Pembayaran</h3>
                 </td>
             </tr>
         </table>

@@ -21,6 +21,7 @@
                                 <th>Luas Bumi</th>
                                 <th>Luas Bangunan</th>
                                 <th>Tunggakan</th>
+                                <th>Gambar</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -52,6 +53,7 @@
                                     <td>
                                         {{ $item->tunggakan }}
                                     </td>
+                                    <td><img src="data:image/{{ $item->type }};base64,{{ $item->gambar }}" width="60px" alt=""></td>
                                     <td><a href="{{ route('editpajak',['id' => $item->NOP]) }}" class="btn btn-info btn-sm">Edit</a></td>
                                     <td><a data-link="{{ route('hapuspajak',['id' => $item->NOP]) }}" class="hapus btn btn-danger btn-sm">Hapus</a></td>
                                 </tr>
@@ -68,6 +70,7 @@
                                 <th>Luas Bumi</th>
                                 <th>Luas Bangunan</th>
                                 <th>Tunggakan</th>
+                                <th>Gambar</th>
                                 <th>Aksi</th>
                             </tr>
                         </tfoot>

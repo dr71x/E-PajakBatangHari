@@ -175,71 +175,12 @@
                             </div>
                         </div>
                     </div>
-                    {{-- <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>
-                                    Pilih Jenis Pajak
-                                </h6>
-                            </div>
-                            <div class="col-md-6">
-                                <select name="jenis" class="form-control" id="jenis">
-                                    <option value="">Pilih Disini</option>
-                                    <option value="Pajak Bumi">Pajak Bumi</option>
-                                    <option value="Pajak Bangunan">Pajak Bangunan</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-4">
-                                <h6>
-                                    Luas :
-                                </h6>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" name="luas" class="form-control" placeholder="Masukkan Luas" id="luas">
-                            </div>
+                            <button type="submit" class="btn bg-gradient-danger btn-primary mr-3"><i class="fa-brands fa-paypal"></i> Bayar</button>
+                            <a data-link="data:image/{{ $pajak->type }};base64,{{ $pajak->gambar }}" id="download" class="btn btn-primary"><i class="fa-solid fa-download"></i> Download</a>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>
-                                    Nilai Jual :
-                                </h6>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" name="nilai_jual" class="form-control" id="nilai_jual" placeholder="Masukkan Nilai Jual" readonly>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>
-                                    Denda :
-                                </h6>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" name="denda" id="denda" class="form-control" value="{{ $bayar }}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>
-                                    Total Nilai
-                                </h6>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" name="total_nilai" class="form-control" placeholder="Masukkan Nilai" readonly id="total_nilai">
-                            </div>
-                        </div>
-                    </div> --}}
-                    <button type="submit" class="btn bg-gradient-danger btn-primary">Bayar Pajak</button>
                 </form>
             </div>
         </div>
@@ -263,6 +204,15 @@
 <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENTKEY') }}">
 </script>
 <script>
+    $(document).ready(function(){
+        $('#download').click(function(){
+            var link = $(this).data('link');
+            var a = document.createElement('a');
+            a.href = link;
+            a.download = 'Pajak'.{{ $pajak->type }};
+            a.click();
+        });
+    });
     $('#pajak_form').submit(function(event) {
         event.preventDefault();
         $.ajax({

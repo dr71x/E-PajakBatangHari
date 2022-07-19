@@ -32,6 +32,7 @@ Route::middleware(['auth', 'CekLevel:admin,user,kades'])->group(function () {
     Route::get('/dashboard',[AdminController::class, 'index'])->name('dashboard');
     Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
     Route::get('/cetak/{id}', [AdminController::class, 'cetakUser'])->name('cetakUser');
+    Route::get('/ambil/data/{id}',[AdminController::class,'ambildata']);
 });
 
 Route::middleware(['auth', 'CekLevel:user'])->group(function () {
@@ -41,6 +42,7 @@ Route::middleware(['auth', 'CekLevel:user'])->group(function () {
     Route::get('/denda/{nopajak}', [TransPajakController::class, 'denda'])->name('denda');
     Route::get('/pajak/bumi/{id}',[TransPajakController::class, 'bumi'])->name('bumi');
     Route::get('/pajak/bangunan/{id}',[TransPajakController::class, 'bangunan'])->name('bangunan');
+    Route::get('/struct/{id}',[TransPajakController::class, 'struct'])->name('struct');
 });
 
 Route::middleware(['auth', 'CekLevel:admin'])->group(function () {
@@ -68,5 +70,4 @@ Route::middleware(['auth', 'CekLevel:admin,kades'])->group(function () {
     Route::get('/laporan/keseluruhan',[AdminController::class, 'laporan'])->name('laporan');
     Route::get('/get/notification',[AdminController::class, 'getnotification'])->name('get-notification');
     Route::get('/data/notification',[AdminController::class, 'datanotification'])->name('data-notification');
-    Route::get('/ambil/data/{id}',[AdminController::class,'ambildata']);
 });

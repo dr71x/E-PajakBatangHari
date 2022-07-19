@@ -7,7 +7,7 @@
                 <h4 class="card-title">Form Nomor Pajak</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('updatepajak') }}" method="POST">
+                <form action="{{ route('updatepajak') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
@@ -25,7 +25,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Tanggal Jatuh Tempo</label>
-                                <input type="date" name="tanggal" class="form-control" value="{{ $pajak->tanggal }}">
+                                <input type="date" name="tanggal" class="form-control" value="{{ \Carbon\carbon::parse($pajak->tanggal)->translatedFormat('Y-m-d') }}">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -36,6 +36,16 @@
                             <div class="form-group">
                                 <label for="">Tunggakan</label>
                                 <input type="text" name="tunggakan" class="form-control" placeholder="Tunggakan" value="{{ $pajak->tunggakan }}">
+                            </div>
+                            @if ($pajak->gambar != NULL)
+                            <div class="form-group">
+                                <label for="">Gambar Sebelum Nya</label> <br>
+                                <img src="data:image/{{ $pajak->type }};base64,{{ $pajak->gambar }}" width="100px" alt="">
+                            </div>
+                            @endif
+                            <div class="form-group">
+                                <label for="">Gambar</label>
+                                <input type="file" name="gambar" class="form-control">
                             </div>
                             <div class="col-md-4">
                                 <button class="btn btn-success btn-sm">Simpan</button>

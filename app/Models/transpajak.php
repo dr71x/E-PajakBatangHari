@@ -60,6 +60,11 @@ class transpajak extends Model
         return $this->belongsTo(User::class, 'userid');
     }
 
+    public function pajak()
+    {
+        return $this->belongsTo(pajak::class, 'NOP');
+    }
+
     public function detail(){
         return $this->belongsTo(pajak::class,'NOP','NOP');
     }

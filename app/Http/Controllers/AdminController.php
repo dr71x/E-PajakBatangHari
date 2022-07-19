@@ -222,7 +222,11 @@ class AdminController extends Controller
             'luas_bumi' => 'required',
             'luas_bangunan' => 'required',
             'tunggakan' => 'required',
+            'gambar' => 'required',
         ]);
+
+        $ext = pathinfo($request->file('gambar')->getClientOriginalName(), PATHINFO_EXTENSION);
+        $gambar = base64_encode(file_get_contents($request->file('gambar')->getRealPath()));
 
         $simpan = new pajak();
         $simpan->NOP = $request->NOP;
@@ -231,6 +235,8 @@ class AdminController extends Controller
         $simpan->tunggakan = $request->tunggakan;
         $simpan->letak = $request->letak;
         $simpan->tanggal = $request->tanggal . ' 00:00:00';
+        $simpan->gambar = $gambar;
+        $simpan->type = $ext;
         $simpan->save();
 
         return redirect()->route('pajak')->with('success', 'Data berhasil ditambahkan');
@@ -248,14 +254,19 @@ class AdminController extends Controller
             'luas_bangunan' => 'required',
             'tunggakan' => 'required',
         ]);
-
         $simpan = pajak::where('NOP',$request->NOP)->first();
         $simpan->NOP = $request->NOP;
         $simpan->luas_bumi = $request->luas_bumi;
         $simpan->luas_bangunan = $request->luas_bangunan;
         $simpan->tunggakan = $request->tunggakan;
         $simpan->letak = $request->letak;
-        $simpan->tanggal = $request->tanggal . ' 00:00:00';
+        if ($request->gambar != NULL) {
+            $ext = pathinfo($request->file('gambar')->getClientOriginalName(), PATHINFO_EXTENSION);
+            $gambar = base64_encode(file_get_contents($request->file('gambar')->getRealPath()));
+            $simpan->gambar = $gambar;
+            $simpan->type = $ext;
+        }
+        $simpan->tanggal = $request->tanggal. ' 00:00:00';
         $simpan->save();
 
         return redirect()->route('pajak')->with('success', 'Data berhasil diedit');

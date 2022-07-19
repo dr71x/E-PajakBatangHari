@@ -7,7 +7,7 @@
                 <h4 class="card-title">Form Tambah Data Pajak</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('pajaksimpan') }}" method="POST">
+                <form action="{{ route('pajaksimpan') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
@@ -36,6 +36,10 @@
                             <div class="form-group">
                                 <label for="">Tunggakan</label>
                                 <input type="text" name="tunggakan" id="tunggakan" class="form-control" placeholder="Tunggakan">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Gambar :</label>
+                                <input type="file" name="gambar" class="form-control">
                             </div>
                             <div class="col-md-4">
                                 <button class="btn btn-success btn-sm">Simpan</button>

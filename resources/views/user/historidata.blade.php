@@ -1,4 +1,3 @@
-
     @foreach ($histori as $item)
         <tr>
             <td>
@@ -29,6 +28,17 @@
             <button type="button" data-id="{{ $item->transaction_id }}" class="ambil btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">
                 Detail
             </button>
+            @if (\Auth::user()->level == 'kades' || \Auth::user()->level == 'admin')
+                @if ($item->status == 'success')
+                <a href="{{ route('cetakUser',['id' => $item->transaction_id]) }}" class="btn btn-success btn-sm">Struck</a>
+                @endif
+            @endif
+            @if (\Auth::user()->level == 'user')
+                @if ($item->status == 'success')
+                    <a href="{{ route('struct',['id' => $item->transaction_id]) }}" class="btn btn-success btn-sm">Struck</a>
+                @endif
+            @endif
+            </td>
         </tr>
     @endforeach
     <script>

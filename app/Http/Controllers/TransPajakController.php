@@ -6,9 +6,11 @@ use App\Models\pajak;
 use App\Models\User;
 use App\Models\transpajak;
 use App\Models\transpajak_detail;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -91,6 +93,14 @@ class TransPajakController extends Controller
     public function historitable(){
         $histori = transpajak::where('userid', Auth::user()->id)->orderBy('transaction_id','DESC')->get();
         return view('user.historidata', compact('histori'));
+    }
+
+    public function struct($id){
+        $data['data'] = transpajak::where('transaction_id',$id)->first();
+        $customPaper = array(0,0,467.00,283.80);
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadview('user.struk',$data)->setPaper($customPaper, 'landscape');
+        return $pdf->download('struk.pdf');
     }
 
     public function notification(Request $request)
