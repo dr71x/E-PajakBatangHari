@@ -1,7 +1,6 @@
 {
     "name": "laravel/laravel",
     "type": "project",
-    "ext-gd": "*",
     "description": "The Laravel Framework.",
     "keywords": [
         "framework",
@@ -16,7 +15,8 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "midtrans/midtrans-php": "^2.5"
+        "midtrans/midtrans-php": "^2.5",
+        "gd": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
